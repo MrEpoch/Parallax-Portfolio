@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+:root {
+    --main-color: #2DA8D8;
+    --secondary-background: #2A2A2D;
+}
+
 html,
 body {
     min-height: 100%;
@@ -22,6 +27,8 @@ body {
     width: 100%;
     color: white;
 }
+
+
 
 h2 {
     display: flex;
