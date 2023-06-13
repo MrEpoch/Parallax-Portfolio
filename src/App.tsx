@@ -16,10 +16,20 @@ import {
 
 function App() {
   const ParallaxRef = useRef<IParallax>(null);
+  
+  const [pageNum, setPageNum] = useState<number>(0);
+
+  const handleScrollChange = () => {
+    console.log(ParallaxRef.current?.space);
+    if (typeof ParallaxRef.current !== null) setPageNum(ParallaxRef.current?.offset || 0);
+  }
 
   useEffect(() => {
-    console.log(ParallaxRef.current?.offset);
-  },[ParallaxRef.current?.offset]);
+
+    document.querySelector(".parallaxContainer")?.addEventListener("scroll", handleScrollChange);
+
+    return () => window.removeEventListener("scroll", handleScrollChange);
+  },[]);
 
   const ColorlibConnector = styled(StepConnector)(() => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
@@ -27,20 +37,20 @@ function App() {
     },
     [`&.${stepConnectorClasses.active}`]: {
       [`& .${stepConnectorClasses.line}`]: {
-        backgroundImage:
-          "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+        backgroundColor:
+          "var(--main-color)",
       },
     },
     [`&.${stepConnectorClasses.completed}`]: {
       [`& .${stepConnectorClasses.line}`]: {
-        backgroundImage:
-          "linear-gradient( 95deg,rgb(242,113,33) 0%,rgb(233,64,87) 50%,rgb(138,35,135) 100%)",
+        backgroundColor:
+          "var(--main-color)",
       },
     },
     [`& .${stepConnectorClasses.line}`]: {
       height: 3,
       border: 0,
-      backgroundColor: "#0b0b0b",
+      backgroundColor: "var(--main-color)",
       borderRadius: 1,
     },
   }));
@@ -49,7 +59,7 @@ function App() {
     ownerState: { completed?: boolean; active?: boolean };
   }>(({ theme, ownerState }) => ({
     backgroundColor:
-      theme.palette.mode === "dark" ? theme.palette.grey[700] : "#ccc",
+      theme.palette.mode === "dark" ? theme.palette.grey[700] : "#111",
     zIndex: 1,
     color: "#fff",
     width: 50,
@@ -59,13 +69,13 @@ function App() {
     justifyContent: "center",
     alignItems: "center",
     ...(ownerState.active && {
-      backgroundImage:
-        "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+      backgroundColor:
+        "var(--main-color)",
       boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
     }),
     ...(ownerState.completed && {
-      backgroundImage:
-        "linear-gradient( 136deg, rgb(242,113,33) 0%, rgb(233,64,87) 50%, rgb(138,35,135) 100%)",
+      backgroundColor:
+        "var(--main-color)",
     }),
   }));
 
@@ -87,16 +97,14 @@ function App() {
   const steps = [1, 2, 3, 4];
 
   return (
-    <Parallax ref={ParallaxRef} pages={4}>
+    <Parallax className="parallaxContainer" ref={ParallaxRef} pages={4}>
       <ParallaxLayer
         factor={headerSpace}
         className="portfolio-header"
         offset={0}
+        sticky={{ start: 0, end: 4 }}
         speed={0.2}
       >
-        <div className="portfolio-header-left__container">
-          <div className="portfolio-header-left__container__github"></div>
-          <div className="portfolio-header-left__container__menu">
             <svg
               fill="none"
               height="24"
@@ -117,8 +125,6 @@ function App() {
                 fill="currentColor"
               />
             </svg>
-          </div>
-        </div>
       </ParallaxLayer>
       <ParallaxLayer
         style={{ zIndex: "5" }}
@@ -130,6 +136,7 @@ function App() {
           className="portfolio-steps__container"
           connector={<ColorlibConnector />}
           alternativeLabel
+          activeStep={pageNum}
           orientation="vertical"
         >
           {steps.map((label) => (
