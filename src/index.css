@@ -1,39 +1,37 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 :root {
-    --main-color: #2DA8D8;
-    --secondary-background: #2A2A2D;
+  --main-color: #2da8d8;
+  --secondary-background: #2a2a2d;
 }
 
 html,
 body {
-    min-height: 100%;
-    width: 100%;
+  min-height: 100%;
+  width: 100%;
 }
 
 body {
-    min-height: 100%;
-    width: 100%;
-    font-family: 'Poppins', sans-serif;
-    background-color: black;
+  min-height: 100%;
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  background-color: black;
 }
 
 #root {
-    min-height: 100%;
-    width: 100%;
-    color: white;
+  min-height: 100%;
+  width: 100%;
+  color: white;
 }
 
-
-
 h2 {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 5rem;
-    font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 5rem;
+  font-weight: 600;
 }
