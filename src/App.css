@@ -9,14 +9,10 @@
   top: 30%;
 }
 
-.portfolio-steps__container * {
-}
-
 .portfolio-header {
   min-height: 80px;
-  width: 100%;
   background: transparent;
-  z-index: 1;
+  max-width: 120px;
 }
 
 .portfolio-header svg {
@@ -40,4 +36,24 @@
   font-size: 2rem;
   color: white;
   z-index: 1;
+}
+
+.custom-shape-divider-bottom-1686752632 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-bottom-1686752632 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 200px;
+}
+
+.custom-shape-divider-bottom-1686752632 .shape-fill {
+    fill: #000000;
 }

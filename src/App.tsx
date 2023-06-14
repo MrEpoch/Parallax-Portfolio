@@ -1,9 +1,7 @@
 import "./App.css";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { useEffect, useMemo, useRef, useState } from "react";
-import blob from "./assets/blobFloat.png";
 import stars from "./assets/stars.jpg";
-import blob12 from "./assets/blobFloat.png";
 import {
   Stepper,
   Step,
@@ -12,17 +10,35 @@ import {
   StepConnector,
   styled,
 } from "@mui/material"; 
+import { animated, useSpring } from "@react-spring/web";
+import About from "./components/about";
 
 
 function App() {
   const ParallaxRef = useRef<IParallax>(null);
   
   const [pageNum, setPageNum] = useState<number>(0);
+  const [activeMenu, setActiveMenu] = useState<boolean>(true);
 
   const handleScrollChange = () => {
     console.log(ParallaxRef.current?.space);
     if (typeof ParallaxRef.current !== null) setPageNum(ParallaxRef.current?.offset || 0);
   }
+
+  const AnimatedStepper = animated(Stepper);
+  
+  const stepperStyles = useSpring({
+    from: {
+      zIndex: 5,
+      opacity: 0,
+      y: '6%',
+    },
+    to: {
+      zIndex: 5,
+      opacity: 1,
+      y: 0,
+    },
+  })
 
   useEffect(() => {
 
@@ -34,6 +50,7 @@ function App() {
   const ColorlibConnector = styled(StepConnector)(() => ({
     [`&.${stepConnectorClasses.alternativeLabel}`]: {
       top: 22,
+      cursor: "pointer"
     },
     [`&.${stepConnectorClasses.active}`]: {
       [`& .${stepConnectorClasses.line}`]: {
@@ -64,6 +81,7 @@ function App() {
     color: "#fff",
     width: 50,
     height: 50,
+    cursor: "pointer",
     display: "flex",
     borderRadius: "50%",
     justifyContent: "center",
@@ -74,8 +92,6 @@ function App() {
       boxShadow: "0 4px 10px 0 rgba(0,0,0,.25)",
     }),
     ...(ownerState.completed && {
-      backgroundColor:
-        "var(--main-color)",
     }),
   }));
 
@@ -102,10 +118,12 @@ function App() {
         factor={headerSpace}
         className="portfolio-header"
         offset={0}
+        style={{ zIndex: 7 }}
         sticky={{ start: 0, end: 4 }}
         speed={0.2}
       >
             <svg
+              onClick={() => setActiveMenu(prev => !prev)}
               fill="none"
               height="24"
               viewBox="0 0 24 24"
@@ -127,17 +145,20 @@ function App() {
             </svg>
       </ParallaxLayer>
       <ParallaxLayer
-        style={{ zIndex: "5" }}
+        style={{ zIndex: "2" }}
         factor={basicSpace}
         speed={0.5}
         sticky={{ start: 0, end: 4 }}
       >
-        <Stepper
+        
+        {activeMenu && 
+        <AnimatedStepper
           className="portfolio-steps__container"
           connector={<ColorlibConnector />}
           alternativeLabel
           activeStep={pageNum}
           orientation="vertical"
+          style={stepperStyles}
         >
           {steps.map((label) => (
             <Step
@@ -147,7 +168,8 @@ function App() {
               <StepLabel StepIconComponent={ColorlibStepIcon} style={{}}></StepLabel>
             </Step>
           ))}
-        </Stepper>
+        </AnimatedStepper>
+        }
       </ParallaxLayer>
       <ParallaxLayer
         className="portfolio-introduction"
@@ -164,14 +186,22 @@ function App() {
         </h2>
       </ParallaxLayer>
       <ParallaxLayer
-        offset={headerSpace + 0.3}
+        offset={basicSpace}
         speed={2}
         factor={basicSpace}
         style={{
-          backgroundImage: `url(${blob12})`,
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "flex-start",
           zIndex: 1,
         }}
-      ></ParallaxLayer>
+       >
+        <div  className="custom-shape-divider-bottom-1686752632">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" fill="currentColor" className="shape-fill"></path>
+            </svg>
+        </div>
+       </ParallaxLayer>
       <ParallaxLayer
         offset={0}
         factor={basicSpace * 2}
@@ -190,6 +220,9 @@ function App() {
         speed={0.5}
         className="layer-photo-top"
       ></ParallaxLayer>
+      <ParallaxLayer offset={basicSpace * 2}>
+        <About/>
+      </ParallaxLayer>
     </Parallax>
   );
 }
