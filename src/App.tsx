@@ -10,7 +10,6 @@ import {
   StepConnector,
   styled,
 } from "@mui/material"; 
-import { animated, useSpring } from "@react-spring/web";
 import About from "./components/about";
 
 
@@ -21,29 +20,16 @@ function App() {
   const [activeMenu, setActiveMenu] = useState<boolean>(true);
 
   const handleScrollChange = () => {
-    console.log(ParallaxRef.current?.space);
-    if (typeof ParallaxRef.current !== null) setPageNum(ParallaxRef.current?.offset || 0);
+    if (ParallaxRef.current === null) return;
+    let page = ParallaxRef.current?.current / ParallaxRef.current?.space;
+    if (!isNaN(page) || page !== null) {
+        if (Math.floor(page + 0.02) > Math.floor(page)) page += 0.02 
+        setPageNum(Math.floor(page));
+    }
   }
 
-  const AnimatedStepper = animated(Stepper);
-  
-  const stepperStyles = useSpring({
-    from: {
-      zIndex: 5,
-      opacity: 0,
-      y: '6%',
-    },
-    to: {
-      zIndex: 5,
-      opacity: 1,
-      y: 0,
-    },
-  })
-
   useEffect(() => {
-
     document.querySelector(".parallaxContainer")?.addEventListener("scroll", handleScrollChange);
-
     return () => window.removeEventListener("scroll", handleScrollChange);
   },[]);
 
@@ -95,22 +81,32 @@ function App() {
     }),
   }));
 
-  function ColorlibStepIcon(props: StepIconProps) {
+  function ColorlibStepIcon(props: any) {
     const { active, completed, className } = props;
+    
+    const icons: { [index: string]: any } = {
+        1: <svg style={{ width: "40px", height: "40px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>home</title><path fill="currentColor" d="M10,20V14H14V20H19V12H22L12,3L2,12H5V20H10Z" /></svg>,
+        2: <svg style={{ width: "40px", height: "40px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>account</title><path fill="currentColor" d="M12,4A4,4 0 0,1 16,8A4,4 0 0,1 12,12A4,4 0 0,1 8,8A4,4 0 0,1 12,4M12,14C16.42,14 20,15.79 20,18V20H4V18C4,15.79 7.58,14 12,14Z" /></svg>,
+        3: <svg style={{ width: "40px", height: "40px"}} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>palette</title><path fill="currentColor" d="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M14.5,8A1.5,1.5 0 0,1 13,6.5A1.5,1.5 0 0,1 14.5,5A1.5,1.5 0 0,1 16,6.5A1.5,1.5 0 0,1 14.5,8M9.5,8A1.5,1.5 0 0,1 8,6.5A1.5,1.5 0 0,1 9.5,5A1.5,1.5 0 0,1 11,6.5A1.5,1.5 0 0,1 9.5,8M6.5,12A1.5,1.5 0 0,1 5,10.5A1.5,1.5 0 0,1 6.5,9A1.5,1.5 0 0,1 8,10.5A1.5,1.5 0 0,1 6.5,12M12,3A9,9 0 0,0 3,12A9,9 0 0,0 12,21A1.5,1.5 0 0,0 13.5,19.5C13.5,19.11 13.35,18.76 13.11,18.5C12.88,18.23 12.73,17.88 12.73,17.5A1.5,1.5 0 0,1 14.23,16H16A5,5 0 0,0 21,11C21,6.58 16.97,3 12,3Z" /></svg>,
+    }
 
     return (
       <ColorlibStepIconRoot
         ownerState={{ completed, active }}
         className={className}
       >
-        {props.icon}
+        {icons[String(props.icon)]}
       </ColorlibStepIconRoot>
     );
   }
 
   const headerSpace = 0.1;
   const basicSpace = 1;
-  const steps = [1, 2, 3, 4];
+  const steps = [
+                0,
+                1,
+                2,
+                3];
 
   return (
     <Parallax className="parallaxContainer" ref={ParallaxRef} pages={4}>
@@ -120,7 +116,7 @@ function App() {
         offset={0}
         style={{ zIndex: 7 }}
         sticky={{ start: 0, end: 4 }}
-        speed={0.2}
+        speed={0.1}
       >
             <svg
               onClick={() => setActiveMenu(prev => !prev)}
@@ -152,23 +148,22 @@ function App() {
       >
         
         {activeMenu && 
-        <AnimatedStepper
+        <Stepper
           className="portfolio-steps__container"
           connector={<ColorlibConnector />}
           alternativeLabel
           activeStep={pageNum}
           orientation="vertical"
-          style={stepperStyles}
         >
           {steps.map((label) => (
             <Step
-              onClick={() => ParallaxRef.current?.scrollTo(label - 1)}
+              onClick={() => ParallaxRef.current?.scrollTo(label)}
               key={label}
             >
-              <StepLabel StepIconComponent={ColorlibStepIcon} style={{}}></StepLabel>
+              <StepLabel StepIconComponent={ColorlibStepIcon}></StepLabel>
             </Step>
           ))}
-        </AnimatedStepper>
+        </Stepper>
         }
       </ParallaxLayer>
       <ParallaxLayer
@@ -220,8 +215,11 @@ function App() {
         speed={0.5}
         className="layer-photo-top"
       ></ParallaxLayer>
-      <ParallaxLayer offset={basicSpace * 2}>
+      <ParallaxLayer factor={basicSpace} style={{ zIndex: 100 }} offset={basicSpace * 2} speed={0.3}>
         <About/>
+      </ParallaxLayer>
+      <ParallaxLayer offset={basicSpace * 2} factor={basicSpace/4}>
+        <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600"><path d="M316.0994873046875,270.1570739746094C298.42933146158856,246.8586451212565,168.19372049967447,210.7329864501953,149.60733032226562,209.6858673095703C131.02094014485678,208.6387481689453,204.05758666992188,251.3089167277018,204.58114624023438,263.8743591308594C205.10470581054688,276.4398015340169,168.5863825480143,268.4554850260417,152.74868774414062,285.0785217285156C136.91099294026694,301.70155843098956,103.92670440673828,350.2617899576823,109.55497741699219,363.6125793457031C115.1832504272461,376.96336873372394,167.2774887084961,355.3665059407552,186.51832580566406,365.1832580566406C205.75916290283203,375.00001017252606,213.48167673746744,425.1308949788411,225,422.5130920410156C236.51832326253256,419.8952891031901,240.44501749674478,374.8691101074219,255.62826538085938,349.4764404296875C270.81151326497394,324.0837707519531,333.76964314778644,293.4555028279622,316.0994873046875,270.1570739746094C298.42933146158856,246.8586451212565,168.19372049967447,210.7329864501953,149.60733032226562,209.6858673095703" fill="currentColor" transform="matrix(-1,0,0,1,514.0579833984375,-16.13946533203125)"></path></svg>
       </ParallaxLayer>
     </Parallax>
   );

@@ -1,0 +1,46 @@
+.portfolio-about {
+    min-height: 100%;
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.portfolio-about-title {
+    font-size: 3rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+}
+
+.portfolio-about-photo__container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.portfolio-about-photo__container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 25%;
+    border: 5px solid var(--main-color);
+    object-fit: cover;
+    transition: all 0.3s ease-in-out;
+}
+
+.portfolio-about-photo__container img:hover {
+    border: 5px solid #000;
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+
+.portfolio-about-text {
+    font-size: 1.2rem;
+    font-weight: 300;
+    color: #000;
+    border-radius: 6px;
+    margin-top: 5%;
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: var(--main-color);
+    padding: 20px;
+}
