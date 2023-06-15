@@ -5,6 +5,7 @@
 }
 
 :root {
+  --color-gradient: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
   --main-color: #2da8d8;
   --secondary-background: #2a2a2d;
 }
@@ -35,3 +36,4 @@ h2 {
   font-size: 5rem;
   font-weight: 600;
 }
+

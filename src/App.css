@@ -16,7 +16,7 @@
 }
 
 .portfolio-header svg {
-    margin: 10px;
+    margin: 10%;
     cursor: pointer;
 }
 
@@ -57,3 +57,4 @@
 .custom-shape-divider-bottom-1686752632 .shape-fill {
     fill: #000000;
 }
+
