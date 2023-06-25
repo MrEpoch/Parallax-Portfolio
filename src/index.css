@@ -33,7 +33,7 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5rem;
+  font-size: 5rem!important;
   font-weight: 600;
 }
 

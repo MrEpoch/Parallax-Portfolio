@@ -18,6 +18,12 @@
 .portfolio-header svg {
     margin: 10%;
     cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.portfolio-header svg:hover {
+    transform: scale(1.1) translateX(10px) translateY(10px);
+    transition: all 0.3s ease-in-out;
 }
 
 .layer-photo-top {
@@ -38,7 +44,8 @@
   z-index: 1;
 }
 
-.custom-shape-divider-bottom-1686752632 {
+
+.custom-shape-divider-bottom-1687613985 {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -47,14 +54,14 @@
     line-height: 0;
 }
 
-.custom-shape-divider-bottom-1686752632 svg {
+.custom-shape-divider-bottom-1687613985 svg {
     position: relative;
     display: block;
     width: calc(100% + 1.3px);
-    height: 200px;
+    height: 160px;
 }
 
-.custom-shape-divider-bottom-1686752632 .shape-fill {
+.custom-shape-divider-bottom-1687613985 .shape-fill {
     fill: #000000;
 }
 

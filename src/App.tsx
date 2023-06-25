@@ -11,7 +11,7 @@ import {
   styled,
 } from "@mui/material"; 
 import About from "./components/about";
-
+import Projects from "./components/project.tsx";
 
 function App() {
   const ParallaxRef = useRef<IParallax>(null);
@@ -115,7 +115,6 @@ function App() {
         offset={0}
         style={{ zIndex: 7 }}
         sticky={{ start: 0, end: 4 }}
-        speed={0.1}
       >
             <svg
               onClick={() => setActiveMenu(prev => !prev)}
@@ -142,7 +141,6 @@ function App() {
       <ParallaxLayer
         style={{ zIndex: "2" }}
         factor={basicSpace}
-        speed={0.5}
         sticky={{ start: 0, end: 4 }}
       >
         
@@ -169,56 +167,46 @@ function App() {
         className="portfolio-introduction"
         sticky={{ end: 0.4 }}
         offset={0}
-        speed={0.1}
         factor={basicSpace}
       >
         <h2
-          onClick={() => console.log(ParallaxRef.current?.offset)}
           className="portfolio-introduction__title"
         >
           Hi, I'm Alex
         </h2>
       </ParallaxLayer>
-      <ParallaxLayer
-        offset={basicSpace}
-        speed={2}
-        factor={basicSpace}
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "flex-start",
-          zIndex: 1,
-        }}
-       >
-        <div  className="custom-shape-divider-bottom-1686752632">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" fill="currentColor" className="shape-fill"></path>
-            </svg>
-        </div>
-       </ParallaxLayer>
+
       <ParallaxLayer
         offset={0}
-        factor={basicSpace * 2}
+        factor={basicSpace + basicSpace / 2}
         speed={0.5}
         style={{
           backgroundImage: `url(${stars})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          zIndex: 0,
           backgroundRepeat: "no-repeat",
         }}
-      ></ParallaxLayer>
+      >
+        <div className="custom-shape-divider-bottom-1687613985">
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+                <path d="M600,112.77C268.63,112.77,0,65.52,0,7.23V120H1200V7.23C1200,65.52,931.37,112.77,600,112.77Z" className="shape-fill"></path>
+            </svg>
+        </div>      
+      </ParallaxLayer>
       <ParallaxLayer
         offset={headerSpace}
         factor={basicSpace}
         speed={0.5}
         className="layer-photo-top"
       ></ParallaxLayer>
-      <ParallaxLayer factor={basicSpace} style={{ zIndex: 100 }} offset={basicSpace * 2} speed={0.3}>
+      <ParallaxLayer factor={basicSpace} style={{ zIndex: 100 }} offset={basicSpace + basicSpace / 2} speed={0.3}>
         <About/>
       </ParallaxLayer>
-      <ParallaxLayer offset={basicSpace * 2} factor={basicSpace/4}>
+      <ParallaxLayer offset={basicSpace + basicSpace / 2} factor={basicSpace / 4}>
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 600 600"><path d="M316.0994873046875,270.1570739746094C298.42933146158856,246.8586451212565,168.19372049967447,210.7329864501953,149.60733032226562,209.6858673095703C131.02094014485678,208.6387481689453,204.05758666992188,251.3089167277018,204.58114624023438,263.8743591308594C205.10470581054688,276.4398015340169,168.5863825480143,268.4554850260417,152.74868774414062,285.0785217285156C136.91099294026694,301.70155843098956,103.92670440673828,350.2617899576823,109.55497741699219,363.6125793457031C115.1832504272461,376.96336873372394,167.2774887084961,355.3665059407552,186.51832580566406,365.1832580566406C205.75916290283203,375.00001017252606,213.48167673746744,425.1308949788411,225,422.5130920410156C236.51832326253256,419.8952891031901,240.44501749674478,374.8691101074219,255.62826538085938,349.4764404296875C270.81151326497394,324.0837707519531,333.76964314778644,293.4555028279622,316.0994873046875,270.1570739746094C298.42933146158856,246.8586451212565,168.19372049967447,210.7329864501953,149.60733032226562,209.6858673095703" fill="currentColor" transform="matrix(-1,0,0,1,514.0579833984375,-16.13946533203125)"></path></svg>
+      </ParallaxLayer>
+      <ParallaxLayer offset={basicSpace * 3} factor={basicSpace} speed={0.3}>
+        <Projects />
       </ParallaxLayer>
     </Parallax>
   );
