@@ -1,6 +1,6 @@
 import "./App.css";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import stars from "./assets/stars.jpg";
 import {
   Stepper,
