@@ -44,6 +44,20 @@
   z-index: 1;
 }
 
+.portfolio-introduction-background {
+    background-color: #2afaff;
+    background-image: linear-gradient(315deg, #570aff 0%, #109fff 85%);
+}
+
+.stepper-item {
+    transition: all 0.3s ease-in-out;
+}
+
+.stepper-item:hover {
+    transform: scale(1.1) translateX(-2px) translateY(-2px);
+    transition: all 0.3s ease-in-out;
+}
+
 
 .custom-shape-divider-bottom-1687613985 {
     position: absolute;

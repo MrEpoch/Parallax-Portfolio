@@ -1,7 +1,6 @@
 import "./App.css";
 import { IParallax, Parallax, ParallaxLayer } from "@react-spring/parallax";
 import { useEffect, useRef, useState } from "react";
-import stars from "./assets/stars.jpg";
 import {
   Stepper,
   Step,
@@ -154,6 +153,7 @@ function App() {
         >
           {steps.map((label) => (
             <Step
+              className="stepper-item"
               onClick={() => ParallaxRef.current?.scrollTo(label)}
               key={label}
             >
@@ -180,11 +180,9 @@ function App() {
         offset={0}
         factor={basicSpace + basicSpace / 2}
         speed={0.5}
+        className="portfolio-introduction-background"
         style={{
-          backgroundImage: `url(${stars})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
+            // here was picture which was imported, i will for now leave it with colors because they work better
         }}
       >
         <div className="custom-shape-divider-bottom-1687613985">
