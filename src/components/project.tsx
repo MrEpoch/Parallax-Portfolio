@@ -1,17 +1,22 @@
+import "./project.css";
+import TodoImage from "../assets/TodoAppPicture.png";
+import TrainImage from "../assets/trainspng.png";
+
+
 export default function Project() {
   const projects = [
     {
       title: "Todo App",
       description:
         "Sign up and Login Todo app, user can do all CRUD operations",
-      image: "image",
+      image: TodoImage,
       link: "http://stencukpage.com",
       github: "https://github.com/MrEpoch/TodoApp",
     },
     {
       title: "Train hackhaton site",
       description: "This is improvment of train company site, it was built on hackhaton",
-      image: "image",
+      image: TrainImage,
       link: "https://hackhathon-train.pages.dev",
       github: "https://github.com/MrEpoch/Hackaton-trains",
     }
@@ -27,6 +32,7 @@ export default function Project() {
               <h3 className="portfolio-projects__card-title">
                 {project.title}
               </h3>
+              <img className="portfolio-projects__card-image" src={project.image} alt="project" />
               <p className="portfolio-projects__card-description">
                 {project.description}
               </p>

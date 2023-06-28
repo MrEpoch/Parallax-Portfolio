@@ -157,7 +157,6 @@ function App() {
         factor={headerSpace}
         className="portfolio-header"
         offset={0}
-        style={{ zIndex: 7 }}
         sticky={{ start: 0, end: 4 }}
       >
         <svg
@@ -181,12 +180,6 @@ function App() {
             fill="currentColor"
           />
         </svg>
-      </ParallaxLayer>
-      <ParallaxLayer
-        style={{ zIndex: "2" }}
-        factor={basicSpace}
-        sticky={{ start: 0, end: 4 }}
-      >
         {activeMenu && (
           <Stepper
             className="portfolio-steps__container"
@@ -233,11 +226,6 @@ function App() {
         factor={basicSpace + basicSpace / 2}
         speed={0.5}
         className="portfolio-introduction-background"
-        style={
-          {
-            // here was picture which was imported, i will for now leave it with colors because they work better
-          }
-        }
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -338,7 +326,7 @@ function App() {
       ></ParallaxLayer>
       <ParallaxLayer
         factor={basicSpace}
-        style={{ zIndex: 100 }}
+        style={{ zIndex: 3 }}
         offset={basicSpace + basicSpace / 2}
         speed={0.3}
       >
@@ -361,7 +349,12 @@ function App() {
           ></path>
         </svg>
       </ParallaxLayer>
-      <ParallaxLayer offset={basicSpace * 3} factor={basicSpace} speed={0.3}>
+      <ParallaxLayer
+        offset={basicSpace * 3}
+        factor={basicSpace}
+        speed={0.3}
+        style={{ zIndex: "11" }}
+        >
         <Projects />
       </ParallaxLayer>
     </Parallax>

@@ -6,6 +6,7 @@
   justify-content: space-around;
   position: absolute;
   right: 10px;
+  max-width: 100px;
   top: 30%;
 }
 
@@ -13,6 +14,7 @@
   min-height: 80px;
   background: transparent;
   max-width: 120px;
+  z-index: 20;
 }
 
 .portfolio-header svg {
@@ -21,7 +23,7 @@
   transition: all 0.3s ease-in-out;
 }
 
-.portfolio-header svg:hover {
+.portfolio-header > svg:hover {
   transform: scale(1.05) translateX(5px) translateY(5px);
   transition: all 0.3s ease-in-out;
 }
