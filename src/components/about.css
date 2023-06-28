@@ -1,52 +1,51 @@
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@200&family=Orbitron:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+Hebrew:wght@200&family=Orbitron:wght@500&display=swap");
 
 .portfolio-about {
-    margin-top: 10%;
-    min-height: 100%;
-    padding: 50px 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  margin-top: 10%;
+  min-height: 100%;
+  padding: 50px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .portfolio-about-title {
-    font-size: 4rem;
-    font-weight: 700;
-    margin-bottom: 5%;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 5%;
 }
 
 .portfolio-about-photo__container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .portfolio-about-photo__container img {
-    width: 25%;
-    aspect-ratio: 1/1;
-    border-radius: 25%;
-    border: 5px solid var(--main-color);
-    object-fit: cover;
-    transition: all 0.3s ease-in-out;
+  width: 25%;
+  aspect-ratio: 1/1;
+  border-radius: 25%;
+  border: 5px solid var(--main-color);
+  object-fit: cover;
+  transition: all 0.3s ease-in-out;
 }
 
 .portfolio-about-photo__container img:hover {
-    border: 5px solid #000;
-    transition: all 0.3s ease-in-out;
-    transform: scale(1.1);
+  border: 5px solid #000;
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.1);
 }
 
 .portfolio-about-text {
-    font-size: 1.8rem;
-    color: #000;
-    border-radius: 6px;
-    margin-top: 5%;
-    margin-left: 20%;
-    margin-right: 20%;
-    background-image: var(--color-gradient);
-    padding: 30px;
-    line-height: 2rem;
-    font-family: 'Noto Sans Hebrew', sans-serif;
-    font-weight: 600;
+  font-size: 1.8rem;
+  color: #000;
+  border-radius: 6px;
+  margin-top: 5%;
+  margin-left: 20%;
+  margin-right: 20%;
+  background-image: var(--color-gradient);
+  padding: 30px;
+  line-height: 2rem;
+  font-family: "Noto Sans Hebrew", sans-serif;
+  font-weight: 600;
 }
-

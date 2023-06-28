@@ -23,6 +23,18 @@ body {
   background-color: black;
 }
 
+.parallaxContainer::-webkit-scrollbar {
+  width: 0.5rem;
+}
+
+.parallaxContainer::-webkit-scrollbar-thumb {
+  background: var(--main-color);
+}
+
+.parallaxContainer::-webkit-scrollbar-track {
+  background-color: var(--secondary-background);
+}
+
 #root {
   min-height: 100%;
   width: 100%;
@@ -33,7 +45,6 @@ h2 {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 5rem!important;
+  font-size: 5rem !important;
   font-weight: 600;
 }
-
