@@ -353,7 +353,8 @@ function App() {
         offset={basicSpace * 3}
         factor={basicSpace}
         speed={0.3}
-        style={{ zIndex: "11" }}
+        style={{ zIndex: "1" }}
+        className="portfolio-introduction-parallax"
         >
         <Projects />
       </ParallaxLayer>

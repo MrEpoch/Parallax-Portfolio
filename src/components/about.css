@@ -21,6 +21,14 @@
   justify-content: center;
 }
 
+.portfolio-about-photo__container a {
+    width: inherit;
+    height: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .portfolio-about-photo__container img {
   width: 25%;
   aspect-ratio: 1/1;

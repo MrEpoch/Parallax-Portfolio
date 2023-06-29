@@ -1,3 +1,9 @@
+.portfolio-introduction-parallax {
+    z-index: 10;
+    min-height: 100%;
+    width: 100%;
+}
+
 .portfolio-projects {
     display: flex;
     flex-direction: column;
@@ -19,7 +25,8 @@
 .portfolio-projects__container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: space-around;
+    align-items: center;
     min-height: 100%;
     width: 100%;
     gap: 2rem;
@@ -27,19 +34,36 @@
 
 .portfolio-projects__card {
     display: flex;
+    text-decoration: none;
+    color: inherit;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 200px;
+    max-width: 700px;
+    min-height: 400px;
+    background-color: var(--system-color);     
+    gap: 2rem;
+
+    padding: 30px;
+    font-size: 1.5rem;
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     transition: all 0.3s ease-in-out;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 .portfolio-projects__card-image {
-    width: 30%;
-    aspect-ratio: 2 / 1; 
+    max-width: 400px;
+    aspect-ratio: 2/1;
+    border-radius: 10px;
     object-fit: cover;
-    object-position: center;
     transition: all 0.3s ease-in-out;
 }
+
+.portfolio-projects__card:hover {
+    transform: scale(1.04);
+    border: 3px solid var(--main-color);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+

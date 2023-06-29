@@ -6,7 +6,7 @@ export default function About() {
     <section className="portfolio-about">
       <h2 className="portfolio-about-title">About me</h2>
       <div className="portfolio-about-photo__container">
-        <img src={MyPhoto} alt="Alex's photo" />
+        <a href="https://github.com/MrEpoch"><img src={MyPhoto} alt="Alex's photo" /></a>
       </div>
       <div className="portfolio-about-text">
         <p>
