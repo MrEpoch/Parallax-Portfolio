@@ -5,8 +5,8 @@
 }
 
 :root {
-  --color-gradient: linear-gradient(315deg, #045de9 0%, #09c6f9 74%);
-  --main-color: #2da8d8;
+  --color-gradient: linear-gradient(315deg, #570aff 0%, #109fff 65%);
+  --main-color: #109fff;
   --secondary-background: #2a2a2d;
   --system-color: #0f1319;
 }
